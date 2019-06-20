@@ -31,5 +31,24 @@ namespace Analyzer
         return null;
       }
     }
+
+    public void WriteCSharpClassFile(string content)
+    {
+      try
+      {
+        List<string> fileContent = new List<string>();
+        string filename = "Output.cs";
+
+        using (FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate))
+        using (StreamWriter writer = new StreamWriter(fileStream))
+        {
+          writer.WriteLine(content);
+        }
+      }
+      catch (Exception ee)
+      {
+        Console.WriteLine(ee.Message);
+      }
+    }
   }
 }
