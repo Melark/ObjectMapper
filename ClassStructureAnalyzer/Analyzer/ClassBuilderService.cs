@@ -28,6 +28,10 @@ namespace Analyzer
 
       foreach (var classStructure in documentStructureDictionary)
       {
+        if (!classStructure.Value.Any())
+        {
+          continue;
+        }
         fileContent.Append(BuildClassWithMembers(classStructure.Key, classStructure.Value, "\t"));
         fileContent.AppendLine("\n");
       }
@@ -65,6 +69,11 @@ namespace Analyzer
         string memberName = $"m_{member}";
         string memberType = member;
         string memberAccessibility = "public";
+
+        if (!documentStructureDictionary[member].Any())
+        {
+          memberType = "string";
+        }
 
         if (members.Count(x => x.Equals(member)) > 1) // duplicate
         {

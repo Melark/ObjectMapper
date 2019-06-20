@@ -21,11 +21,5 @@ namespace Analyzer
       Console.ReadLine();
     }
   }
-
-  
-
-
-
-
 }
 
